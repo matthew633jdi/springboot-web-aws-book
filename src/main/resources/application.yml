@@ -1,9 +1,12 @@
 spring:
   datasource:
     driver-class-name: org.h2.Driver
-    username: study
-    password: study
-    url: jdbc:h2:~/study
+    username: sa
+    password:
+    url: jdbc:h2:tcp://localhost/~/querydsl
+  #    username: study
+#    password: study
+#    url: jdbc:h2:~/study
   jpa:
     hibernate:
       ddl-auto: create
@@ -12,15 +15,11 @@ spring:
         format_sql: true  # SQL문 정렬 출력
         use_sql_comments: true
     show-sql: true  # 쿼리 로그
-logging:
-  level:
-    org:
-      hibernate:
-        type:
-          descriptor:
-            sql: trace
 
 decorator:
   datasource:
     p6spy:
       enable-logging: true
+logging:
+  level:
+    org.hibernate.sql: debug
