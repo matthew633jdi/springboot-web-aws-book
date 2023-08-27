@@ -1,3 +1,8 @@
+# mustache 한글 깨짐 (스프링부트 3.7.x + mustache 조합에서 한글 깨짐 문제 해결)
+server:
+  servlet:
+    encoding:
+      force-response: true
 spring:
   datasource:
     driver-class-name: org.h2.Driver
