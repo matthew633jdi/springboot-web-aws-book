@@ -1,13 +1,11 @@
 package org.example.domain.posts;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.example.domain.BaseTimeEntity;
 
 import javax.persistence.*;
 
+@ToString(of = {"id", "title", "content", "author"})
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity

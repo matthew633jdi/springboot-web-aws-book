@@ -7,8 +7,8 @@ import java.util.List;
 
 // iBatis, Mybatis 등에서 Dao라고 불리는 DB Layer 접근자
 // @Repository 생략 가능
-public interface PostsRepository extends JpaRepository<Posts, Long> {
+public interface PostsRepository extends JpaRepository<Posts, Long>, PostRepositoryCustom {
 
     @Query("SELECT p FROM Posts p ORDER BY p.id DESC")
-    List<Posts> findAllDesc();
+    List<Posts> findAllDescJPQL();
 }
