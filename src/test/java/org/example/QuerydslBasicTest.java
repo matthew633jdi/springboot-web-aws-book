@@ -2,7 +2,7 @@ package org.example;
 
 import com.querydsl.core.QueryResults;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import org.example.entity.Member;
+import org.example.entity.Mb;
 import org.example.entity.Team;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,11 +11,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.example.entity.QMember.member;
+import static org.example.entity.QMb.mb;
 
 @SpringBootTest
 @Transactional
@@ -34,82 +33,82 @@ public class QuerydslBasicTest {
         em.persist(teamA);
         em.persist(teamB);
 
-        Member member1 = new Member("member1", 10, teamA);
-        Member member2 = new Member("member2", 20, teamA);
+        Mb mb1 = new Mb("member1", 10, teamA);
+        Mb mb2 = new Mb("member2", 20, teamA);
 
-        Member member3 = new Member("member3", 30, teamB);
-        Member member4 = new Member("member4", 40, teamB);
+        Mb mb3 = new Mb("member3", 30, teamB);
+        Mb mb4 = new Mb("member4", 40, teamB);
 
-        em.persist(member1);
-        em.persist(member2);
-        em.persist(member3);
-        em.persist(member4);
+        em.persist(mb1);
+        em.persist(mb2);
+        em.persist(mb3);
+        em.persist(mb4);
     }
 
     @Test
     void startJPQL() {
-        String qlString = "select m from Member m " +
+        String qlString = "select m from Mb m " +
                 "where m.username = :username";
-        Member findMember = em.createQuery(qlString, Member.class)
+        Mb findMb = em.createQuery(qlString, Mb.class)
                 .setParameter("username", "member1")
                 .getSingleResult();
 
-        assertThat(findMember.getUsername()).isEqualTo("member1");
+        assertThat(findMb.getUsername()).isEqualTo("member1");
     }
 
     @Test
     void startQuerydsl() {
-                Member findMember = queryFactory
-                .select(member)
-                .from(member)
-                .where(member.username.eq("member1"))
+                Mb findMb = queryFactory
+                .select(mb)
+                .from(mb)
+                .where(mb.username.eq("member1"))
                 .fetchOne();
 
-        assertThat(findMember.getUsername()).isEqualTo("member1");
+        assertThat(findMb.getUsername()).isEqualTo("member1");
     }
 
     @Test
     void searchAndParam() {
-        Member findMember = queryFactory
-                .selectFrom(member)
+        Mb findMb = queryFactory
+                .selectFrom(mb)
 //                .where(member.username.eq("member1").and(member.age.eq(10)))
                 .where(
-                        member.username.eq("member1"),
+                        mb.username.eq("member1"),
                         null,   // null 값은 무시함 => 메서드 추출을 활용해서 동적 쿼리를 깔끔하게 만들 수 있음
-                        member.age.eq(10)
+                        mb.age.eq(10)
                 )
                 .fetchOne();
 
-        assertThat(findMember.getUsername()).isEqualTo("member1");
+        assertThat(findMb.getUsername()).isEqualTo("member1");
     }
 
 
     void fetchList() {
         // list
-        List<Member> fetch = queryFactory
-                .selectFrom(member)
+        List<Mb> fetch = queryFactory
+                .selectFrom(mb)
                 .fetch();
 
         // 단 건
-        Member findMember1 = queryFactory
-                .selectFrom(member)
+        Mb findMb1 = queryFactory
+                .selectFrom(mb)
                 .fetchOne();
 
         // 처음 한 건 조회
-        Member findMember2 = queryFactory
-                .selectFrom(member)
+        Mb findMb2 = queryFactory
+                .selectFrom(mb)
                 .fetchFirst();
 
         // 페이징에 사용. 전체 쿼리와 카운트 조회 2번 수행
-        QueryResults<Member> results = queryFactory
-                .selectFrom(member)
+        QueryResults<Mb> results = queryFactory
+                .selectFrom(mb)
                 .fetchResults();
 
-        List<Member> results1 = results.getResults();
+        List<Mb> results1 = results.getResults();
 
         // 카운트 쿼리
         long count = queryFactory
-                .selectFrom(member)
+                .selectFrom(mb)
                 .fetchCount();
     }
 }

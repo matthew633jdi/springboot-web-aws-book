@@ -1,4 +1,4 @@
-package org.example.config;
+package org.example.config.querydsl;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;

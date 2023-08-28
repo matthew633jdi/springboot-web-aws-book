@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString(of = {"id", "username", "age"})
-public class Member {
+public class Mb {
     @Id
     @GeneratedValue
     @Column(name = "member_id")
@@ -25,15 +25,15 @@ public class Member {
     @JoinColumn(name = "team_id")
     private Team team;
 
-    public Member(String username) {
+    public Mb(String username) {
         this(username, 0);
     }
 
-    public Member(String username, int age) {
+    public Mb(String username, int age) {
         this(username, age, null);
     }
 
-    public Member(String username, int age, Team team) {
+    public Mb(String username, int age, Team team) {
         this.username = username;
         this.age = age;
         if (team != null) {
@@ -44,6 +44,6 @@ public class Member {
     // 양방향 연관관계 한번에 처리(연관관계 편의 메서드)
     public void changeTeam(Team team) {
         this.team = team;
-        team.getMembers().add(this);
+        team.getMbs().add(this);
     }
 }

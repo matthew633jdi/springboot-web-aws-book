@@ -10,12 +10,10 @@ import javax.persistence.EntityManager;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 @Transactional
 @Commit
-class MemberTest {
+class MbTest {
 
     @Autowired
     EntityManager em;
@@ -27,26 +25,26 @@ class MemberTest {
         em.persist(teamA);
         em.persist(teamB);
 
-        Member member1 = new Member("member1", 10, teamA);
-        Member member2 = new Member("member2", 20, teamA);
+        Mb mb1 = new Mb("member1", 10, teamA);
+        Mb mb2 = new Mb("member2", 20, teamA);
 
-        Member member3 = new Member("member3", 30, teamB);
-        Member member4 = new Member("member4", 40, teamB);
+        Mb mb3 = new Mb("member3", 30, teamB);
+        Mb mb4 = new Mb("member4", 40, teamB);
 
-        em.persist(member1);
-        em.persist(member2);
-        em.persist(member3);
-        em.persist(member4);
+        em.persist(mb1);
+        em.persist(mb2);
+        em.persist(mb3);
+        em.persist(mb4);
 
         // 초기화
         em.flush();
         em.clear();
 
-        List<Member> members = em.createQuery("select m from Member m", Member.class).getResultList();
+        List<Mb> mbs = em.createQuery("select m from Mb m", Mb.class).getResultList();
 
-        for (Member member : members) {
-            System.out.println("member = " + member);
-            System.out.println("-> member.getTeam() = " + member.getTeam());
+        for (Mb mb : mbs) {
+            System.out.println("member = " + mb);
+            System.out.println("-> member.getTeam() = " + mb.getTeam());
         }
     }
 
