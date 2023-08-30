@@ -15,7 +15,7 @@ import java.util.List;
 @ToString(of = {"id", "name"})
 public class Team {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "team_id")
     private Long id;
 

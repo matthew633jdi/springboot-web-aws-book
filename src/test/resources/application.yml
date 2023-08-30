@@ -1,0 +1,28 @@
+server:
+  servlet:
+    encoding:
+      force-response: true
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        ddl-auto: create
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    defer-datasource-initialization: true
+  h2:
+    console:
+      enabled: true
+  session:
+    store-type: jdbc
+# Test OAuth
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: test
+            client-secret: test
+            scope:
+              - profile
+              - email

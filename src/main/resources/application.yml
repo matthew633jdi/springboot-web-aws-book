@@ -25,6 +25,10 @@ spring:
       enabled: true
   profiles:
     include: oauth
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: always # 실행하는 DB가 embedded인지 등을 고려하여 테이블 생성 여부 결정. always는 항상 테이블 생성
 
 decorator:
   datasource:
