@@ -8,5 +8,15 @@
       <jdbc-url>jdbc:h2:tcp://localhost:8082/querydsl</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="freelec" uuid="49c61c3d-f689-4a68-a0a7-b32deb8e22c0">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <remarks>freelec</remarks>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://springboot-aws-webservice.caf4dvuuahui.ap-northeast-2.rds.amazonaws.com:3306/springboot_aws_webservice</jdbc-url>
+      <vm-options>&quot;-Djdk.tls.disabledAlgorithms=SSLv3, TLSv1, RC4, DES, MD5withRSA, DH keySize &lt; 1024, EC keySize &lt; 224, 3DES_EDE_CBC, anon, NULL&quot;</vm-options>
+      <working-dir>$ProjectFileDir$</working-dir>
+      <time-zone>Asia/Seoul</time-zone>
+    </data-source>
   </component>
 </project>
